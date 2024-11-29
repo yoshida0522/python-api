@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Request
+from fastapi import FastAPI, Request, Response
 from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi_csrf_protect import CsrfProtect
@@ -35,3 +35,8 @@ def csrf_protect_exception_handler(request: Request, exc: CsrfProtectError):
 @app.get("/", response_model=SuccessMsg)
 def root():
     return {"message": "Welcome to Fast API"}
+
+
+@app.get("/favicon.ico")
+async def favicon():
+    return Response(status_code=204)
