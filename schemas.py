@@ -1,12 +1,12 @@
 from pydantic import BaseModel
 from typing import Optional
-from decouple import config
+# from decouple import config
 
-CSRF_KEY = config('CSRF_KEY')
+# CSRF_KEY = config('CSRF_KEY')
 
 
-class CsrfSettings(BaseModel):
-    serect_key: str = CSRF_KEY
+# class CsrfSettings(BaseModel):
+#     serect_key: str = CSRF_KEY
 
 
 class Todo(BaseModel):
@@ -34,5 +34,5 @@ class UserInfo(BaseModel):
     email: str
 
 
-class Csrf(BaseModel):
-    csrf_token: str
+# class Csrf(BaseModel):
+#     csrf_token: str
