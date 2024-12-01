@@ -1,4 +1,4 @@
-from fastapi import APIRouter, HTTPException, Request, Response, Depends
+from fastapi import APIRouter, HTTPException, Request, Response
 from fastapi.encoders import jsonable_encoder
 from schemas import Todo, TodoBody, SuccessMsg
 from database import db_create_todo, db_get_todos, db_get_single_todo, db_update_todo, db_delete_todo
@@ -26,7 +26,7 @@ async def get_todos(request: Request):
 
 
 @router.get("/api/todo/{id}", response_model=Todo)
-async def get_single_todo(Response, id: str):
+async def get_single_todo(response: Response, id: str):
     res = await db_get_single_todo(id)
     if res:
         return res
@@ -35,7 +35,7 @@ async def get_single_todo(Response, id: str):
 
 
 @router.put("/api/todo/{id}", response_model=Todo)
-async def update_todo(rid: str, data: TodoBody):
+async def update_todo(id: str, data: TodoBody):
     todo = jsonable_encoder(data)
     res = await db_update_todo(id, todo)
     if res:
